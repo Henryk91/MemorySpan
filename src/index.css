@@ -111,6 +111,9 @@ button {
   border-color: #bb8652;
   outline: none;
   font-size: 30px;
+  color: black;
+  -webkit-text-fill-color: black;
+  -webkit-opacity: 1;
 }
 
 button:active {
