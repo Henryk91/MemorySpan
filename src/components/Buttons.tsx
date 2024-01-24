@@ -28,55 +28,67 @@ function Buttons({
   };
 
   return (
-    <div id="buttons">
-      <button id="clear" onClick={resetClick}>
-        AC
-      </button>
-      <button id="multiply" className="smallButtonFont" onClick={toggleCheckForward}>
-        {checkForward ? "Forward" : "Reverse"}
-      </button>
-      <button id="seven" onClick={() => numberClick(7)}>
-        7
-      </button>
-      <button id="eight" onClick={() => numberClick(8)}>
-        8
-      </button>
-      <button id="nine" onClick={() => numberClick(9)}>
-        9
-      </button>
-      <button id="subtract" className="smallButtonFont" onClick={decreaseSpan}>
-        Span <br /> -
-      </button>
-      <button id="four" onClick={() => numberClick(4)}>
-        4
-      </button>
-      <button id="five" onClick={() => numberClick(5)}>
-        5
-      </button>
-      <button id="six" onClick={() => numberClick(6)}>
-        6
-      </button>
-      <button id="add" className="smallButtonFont" onClick={increaseSpan}>
-        Span +
-      </button>
-      <button id="one" onClick={() => numberClick(1)}>
-        1
-      </button>
-      <button id="two" onClick={() => numberClick(2)}>
-        2
-      </button>
-      <button id="three" onClick={() => numberClick(3)}>
-        3
-      </button>
-      <button id="equals" onClick={startTest}>
-        {!activeRound ? "▶" : "⏸"}
-      </button>
-      <button id="zero" onClick={() => numberClick(0)}>
-        0
-      </button>
-      <button id="decimal" className="smallButtonFont" onClick={toggleIsSlow}>
-        {isSlow ? "Slow" : "Fast"}
-      </button>
+    <div id="flex-buttons">
+      <div className="buttonRow">
+        <button id="clear" onClick={resetClick}>
+          AC
+        </button>
+        <button id="multiply" className="smallButtonFont" onClick={toggleCheckForward}>
+          {checkForward ? "Forward" : "Reverse"}
+        </button>
+      </div>
+      <div className="buttonRow">
+        <button id="seven" onClick={() => numberClick(7)}>
+          7
+        </button>
+        <button id="eight" onClick={() => numberClick(8)}>
+          8
+        </button>
+        <button id="nine" onClick={() => numberClick(9)}>
+          9
+        </button>
+        <button id="subtract" onClick={decreaseSpan}>
+          <span className="smallButtonFont">Span </span>
+          <span className="smallButtonFont"> -</span>
+        </button>
+      </div>
+      <div className="buttonRow">
+        <button id="four" onClick={() => numberClick(4)}>
+          4
+        </button>
+        <button id="five" onClick={() => numberClick(5)}>
+          5
+        </button>
+        <button id="six" onClick={() => numberClick(6)}>
+          6
+        </button>
+        <button id="add" onClick={increaseSpan}>
+          <span className="smallButtonFont"> Span</span>
+          <span className="smallButtonFont"> +</span>
+        </button>
+      </div>
+      <div className="buttonRow">
+        <button id="one" onClick={() => numberClick(1)}>
+          1
+        </button>
+        <button id="two" onClick={() => numberClick(2)}>
+          2
+        </button>
+        <button id="three" onClick={() => numberClick(3)}>
+          3
+        </button>
+        <button id="equals" onClick={startTest}>
+          {!activeRound ? "▶" : "⏸"}
+        </button>
+      </div>
+      <div className="buttonRow">
+        <button id="zero" onClick={() => numberClick(0)}>
+          0
+        </button>
+        <button id="decimal" className="smallButtonFont" onClick={toggleIsSlow}>
+          {isSlow ? "Slow" : "Fast"}
+        </button>
+      </div>
     </div>
   );
 }

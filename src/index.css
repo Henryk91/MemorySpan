@@ -39,6 +39,9 @@ body {
 }
 .smallButtonFont {
   font-size: 20px;
+  text-align: center;
+  line-height: 0px;
+  margin-left: 1px;
 }
 
 #display {
@@ -83,8 +86,6 @@ body {
 }
 
 #displayScreen > p {
-  /* display:grid;
-  grid-column:1/4; */
   line-height: 10px;
   margin: 0;
   padding: 5;
@@ -92,17 +93,20 @@ body {
 
 #insideScreen {
   display: flex;
-  /* border: 1px solid; */
-  /* align-items: stretch; */
   justify-content: space-between;
 }
 
 #buttons {
   display: grid;
-  grid-column: 1/5;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(70px, auto);
-  grid-gap: 10px;
+  grid-column: 1/4;
+  grid-auto-rows: minmax(50px, auto);
+  grid-row-gap: 10px;
+}
+
+#flex-buttons {
+  display: flex;
+  grid-row-gap: 10px;
+  flex-direction: column;
 }
 button {
   font-family: "American Typewriter";
@@ -145,7 +149,26 @@ button:active {
   #displayScreen {
     width: 81vw;
   }
-  #buttons {
-    margin-top: -15vh;
-  }
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonRow {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  flex-wrap: wrap;
+}
+.buttonRow > button {
+  flex-grow: 1;
+  margin: 3px;
+  width: 5vw !important;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
