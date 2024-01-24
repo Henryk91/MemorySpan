@@ -37,14 +37,14 @@
   }
 }
 
-#menue{
+#menu {
   text-align: center;
   margin-top: 40px;
 }
-#menue > button{
+#menu > button {
   margin-bottom: 20px;
 }
-.buttonActiveClass{
+.buttonActiveClass {
   background-color: red;
   border-color: red;
 }

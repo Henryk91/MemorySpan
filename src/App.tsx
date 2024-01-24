@@ -10,7 +10,7 @@ function App() {
   };
   if (selectedComponent === undefined) {
     return (
-      <div id="menue">
+      <div id="menu">
         <button onClick={() => setSelectedComponent("DigitMemory")}>DigitMemory</button>
         <button onClick={() => setSelectedComponent("SpacialMemory")}>SpacialMemory</button>
       </div>
