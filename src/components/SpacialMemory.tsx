@@ -63,7 +63,6 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
     const newCalc = `${calc}${showCalc}`;
     console.log("newCalc", newCalc);
     setCalc(newCalc);
-    console.log("newCalc.length, numberList.length", newCalc.length, numberList.join("").length);
 
     if (newCalc.length === numberList.join("").length) {
       let newScore = score;
@@ -78,15 +77,19 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
           setRerunRound(true);
         }, 2000);
       } else {
-        const expectedVal = checkForward
-          ? numberList.join("")
-          : JSON.parse(JSON.stringify(numberList)).reverse().join("");
-        setMessage("Wrong: " + expectedVal);
+        setMessage("Incorrect !! !");
+        setActiveRound(!activeRound);
       }
       setCalc("");
       setRetVal(`${newScore}/${newRound}`);
       setScore(newScore);
       setRound(newRound);
+    } else if (newCalc.length > numberList.join("").length) {
+      setMessage("Incorrect !!");
+      setCalc("");
+      setRetVal(`${score}/${round + 1}`);
+      setRound(round + 1);
+      setActiveRound(false);
     }
   };
 
@@ -140,7 +143,7 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
   return (
     <>
       <span onClick={() => openMenu()}>
-        <Screen calc={calc} retVal={retVal} message={message} span={span} />
+        <Screen calc={"calc"} retVal={retVal} message={message} span={span} />
       </span>
       <SpaceButtons
         calc={calc}
