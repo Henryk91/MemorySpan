@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/MemorySpan/static/css/main.10eb89e1.css",
-    "main.js": "/MemorySpan/static/js/main.8c932763.js",
+    "main.js": "/MemorySpan/static/js/main.43e9f079.js",
     "static/js/787.d8da7108.chunk.js": "/MemorySpan/static/js/787.d8da7108.chunk.js",
     "index.html": "/MemorySpan/index.html",
     "main.10eb89e1.css.map": "/MemorySpan/static/css/main.10eb89e1.css.map",
-    "main.8c932763.js.map": "/MemorySpan/static/js/main.8c932763.js.map",
+    "main.43e9f079.js.map": "/MemorySpan/static/js/main.43e9f079.js.map",
     "787.d8da7108.chunk.js.map": "/MemorySpan/static/js/787.d8da7108.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.10eb89e1.css",
-    "static/js/main.8c932763.js"
+    "static/js/main.43e9f079.js"
   ]
 }
