@@ -150,7 +150,7 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
   return (
     <>
       <span onClick={() => openMenu()}>
-        <Screen calc={"calc"} retVal={retVal} message={message} span={span} />
+        <Screen calc={"Spatial Memory"} retVal={retVal} message={message} span={span} />
       </span>
       <SpaceButtons
         calc={calc}
