@@ -1,16 +1,17 @@
 @font-face {
   font-family: "American Typewriter";
   src: url("//db.onlinewebfonts.com/t/940ace70d6c766e685a20dea33762abf.eot");
-    src: url("//db.onlinewebfonts.com/t/940ace70d6c766e685a20dea33762abf.eot?#iefix") format("embedded-opentype"),
+  src: url("//db.onlinewebfonts.com/t/940ace70d6c766e685a20dea33762abf.eot?#iefix") format("embedded-opentype"),
     url("//db.onlinewebfonts.com/t/940ace70d6c766e685a20dea33762abf.woff2") format("woff2"),
     url("//db.onlinewebfonts.com/t/940ace70d6c766e685a20dea33762abf.woff") format("woff"),
     url("//db.onlinewebfonts.com/t/940ace70d6c766e685a20dea33762abf.ttf") format("truetype"),
     url("//db.onlinewebfonts.com/t/940ace70d6c766e685a20dea33762abf.svg#American Typewriter") format("svg");
 }
 
-@font-face {font-family: "OPTICalculator";
-    src: url("//db.onlinewebfonts.com/t/a4e40941cd04772dbe49aa5790ad5905.eot");
-    src: url("//db.onlinewebfonts.com/t/a4e40941cd04772dbe49aa5790ad5905.eot?#iefix") format("embedded-opentype"),
+@font-face {
+  font-family: "OPTICalculator";
+  src: url("//db.onlinewebfonts.com/t/a4e40941cd04772dbe49aa5790ad5905.eot");
+  src: url("//db.onlinewebfonts.com/t/a4e40941cd04772dbe49aa5790ad5905.eot?#iefix") format("embedded-opentype"),
     url("//db.onlinewebfonts.com/t/a4e40941cd04772dbe49aa5790ad5905.woff2") format("woff2"),
     url("//db.onlinewebfonts.com/t/a4e40941cd04772dbe49aa5790ad5905.woff") format("woff"),
     url("//db.onlinewebfonts.com/t/a4e40941cd04772dbe49aa5790ad5905.ttf") format("truetype"),
@@ -23,27 +24,27 @@ body {
   margin: 0;
   padding: 0;
 }
-.App{
+.App {
   text-align: center;
   background-color: #654321;
   width: 25vw;
   margin-left: 37.5vw;
   margin-top: 10vh;
-  display:grid;
-  grid-template-columns:repeat(4, 1fr);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(50px, auto);
   padding: 15px;
   border-radius: 5px;
-  border: 5px ridge 
+  border: 5px ridge;
 }
 .smallButtonFont {
   font-size: 20px;
 }
 
-#display{
+#display {
   font-size: 25px;
 }
-#displayScreen{
+#displayScreen {
   width: 22.5vw;
   background-color: rgb(0, 223, 0);
   text-align: right;
@@ -51,28 +52,28 @@ body {
   height: 40px;
   overflow-y: hidden;
   margin-bottom: 10px;
-  border: 5px inset ;
+  border: 5px inset;
   border-radius: 5px;
-  font-family: 'OPTICalculator';
+  font-family: "OPTICalculator";
 }
-.infoBlock{
+.infoBlock {
   display: flex;
   flex-direction: column;
 }
 
-.textLeft{
+.textLeft {
   text-align: left;
 }
-.textRight{
+.textRight {
   text-align: Right;
 }
-.center{
+.center {
   justify-content: center;
 }
-.textCenter{
+.textCenter {
   text-align: center;
 }
-#messageBox{
+#messageBox {
   display: flex;
   text-align: center;
   justify-content: center;
@@ -81,7 +82,7 @@ body {
   font-size: 20px;
 }
 
-#displayScreen > p{
+#displayScreen > p {
   /* display:grid;
   grid-column:1/4; */
   line-height: 10px;
@@ -89,61 +90,59 @@ body {
   padding: 5;
 }
 
-#insideScreen{
+#insideScreen {
   display: flex;
   /* border: 1px solid; */
   /* align-items: stretch; */
   justify-content: space-between;
 }
 
-#buttons{
-  display:grid;
-  grid-column:1/5;
-  grid-template-columns:repeat(4, 1fr);
+#buttons {
+  display: grid;
+  grid-column: 1/5;
+  grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(70px, auto);
   grid-gap: 10px;
 }
-button{
-  font-family: 'American Typewriter';
+button {
+  font-family: "American Typewriter";
   background-color: rgb(255, 226, 197);
   border-radius: 10px;
   border-color: #bb8652;
   outline: none;
- font-size: 30px;
+  font-size: 30px;
 }
 
-button:active{
-  background-color: rgba(255, 226, 197,0.5);
+button:active {
+  background-color: rgba(255, 226, 197, 0.5);
 }
-#clear{
-  grid-column:1/3;
-}
-
-#multiply{
-  grid-column:3/5;
+#clear {
+  grid-column: 1/3;
 }
 
-#equals{
-  grid-column:4/5;
+#multiply {
+  grid-column: 3/5;
+}
+
+#equals {
+  grid-column: 4/5;
   grid-row: 4/6;
 }
 
-#zero{
-  grid-column:1/3;
+#zero {
+  grid-column: 1/3;
 }
 
 @media (max-aspect-ratio: 10/10) and (max-width: 700px) {
-
-  .App{
+  .App {
     height: 90vh;
     width: 89vw;
     margin: 0vw;
   }
-  #displayScreen{
+  #displayScreen {
     width: 81vw;
   }
-  #buttons{
+  #buttons {
     margin-top: -15vh;
   }
 }
-
