@@ -44,37 +44,49 @@ function SpaceButtons({
   };
 
   return (
-    <div id="buttons">
-      <button id="clear" onClick={resetClick}>
-        AC
-      </button>
-      <button id="multiply" className="smallButtonFont" onClick={toggleCheckForward}>
-        {checkForward ? "Forward" : "Reverse"}
-      </button>
-      <button className={checkActive(7)} id="seven" onClick={() => numberClick(7)}></button>
-      <button className={checkActive(8)} id="eight" onClick={() => numberClick(8)}></button>
-      <button className={checkActive(9)} id="nine" onClick={() => numberClick(9)}></button>
-      <button id="subtract" className={`smallButtonFont ${checkActive(10)}`} onClick={() => numberClick(10)}></button>
-      <button className={checkActive(4)} id="four" onClick={() => numberClick(4)}></button>
-      <button className={checkActive(5)} id="five" onClick={() => numberClick(5)}></button>
-      <button className={checkActive(6)} id="six" onClick={() => numberClick(6)}></button>
-      <button id="add" className={`smallButtonFont ${checkActive(11)}`} onClick={() => numberClick(11)}></button>
-      <button className={checkActive(1)} id="one" onClick={() => numberClick(1)}></button>
-      <button className={checkActive(2)} id="two" onClick={() => numberClick(2)}></button>
-      <button className={checkActive(3)} id="three" onClick={() => numberClick(3)}></button>
-      <button className={checkActive(0)} id="three" onClick={() => numberClick(0)}></button>
-      <button id="subtract" className="smallButtonFont" onClick={decreaseSpan}>
-        Span <br /> -
-      </button>
-      <button id="add" className="smallButtonFont" onClick={increaseSpan}>
-        Span +
-      </button>
-      <button id="decimal" className="smallButtonFont" onClick={toggleIsSlow}>
-        {isSlow ? "Slow" : "Fast"}
-      </button>
-      <button id="three " onClick={startTest}>
-        {!activeRound ? "▶" : "⏸"}
-      </button>
+    <div id="flex-buttons">
+      <div className="buttonRow">
+        <button id="clear" className="smallButtonFont" onClick={resetClick}>
+          AC
+        </button>
+        <button id="multiply" className="smallButtonFont" onClick={toggleCheckForward}>
+          {checkForward ? "Forward" : "Reverse"}
+        </button>
+      </div>
+      <div className="buttonRow">
+        <button className={checkActive(7)} id="seven" onClick={() => numberClick(7)}></button>
+        <button className={checkActive(8)} id="eight" onClick={() => numberClick(8)}></button>
+        <button className={checkActive(9)} id="nine" onClick={() => numberClick(9)}></button>
+        <button id="subtract" className={`${checkActive(10)}`} onClick={() => numberClick(10)}></button>
+      </div>
+      <div className="buttonRow">
+        <button className={checkActive(4)} id="four" onClick={() => numberClick(4)}></button>
+        <button className={checkActive(5)} id="five" onClick={() => numberClick(5)}></button>
+        <button className={checkActive(6)} id="six" onClick={() => numberClick(6)}></button>
+        <button id="add" className={`${checkActive(11)}`} onClick={() => numberClick(11)}></button>
+      </div>
+      <div className="buttonRow">
+        <button className={checkActive(1)} id="one" onClick={() => numberClick(1)}></button>
+        <button className={checkActive(2)} id="two" onClick={() => numberClick(2)}></button>
+        <button className={checkActive(3)} id="three" onClick={() => numberClick(3)}></button>
+        <button className={checkActive(0)} id="three" onClick={() => numberClick(0)}></button>
+      </div>
+      <div className="buttonRow">
+        <button id="subtract" onClick={decreaseSpan}>
+          <span className="smallButtonFont">Span </span>
+          <span className="smallButtonFont"> -</span>
+        </button>
+        <button id="add" onClick={increaseSpan}>
+          <span className="smallButtonFont">Span </span>
+          <span className="smallButtonFont"> +</span>
+        </button>
+        <button id="decimal" onClick={toggleIsSlow}>
+          <span className="smallButtonFont">{isSlow ? "Slow" : "Fast"} </span>
+        </button>
+        <button id="three " onClick={startTest}>
+          {!activeRound ? "▶" : "⏸"}
+        </button>
+      </div>
     </div>
   );
 }
