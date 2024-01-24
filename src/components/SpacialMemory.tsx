@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "../App.css";
-import Buttons from "./Buttons";
+import SpaceButtons from "./SpaceButtons";
 import Screen from "./Screen";
 
 function SpacialMemory({ openMenu }: { openMenu: () => void }) {
@@ -61,9 +61,11 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
       setMessage("");
     }
     const newCalc = `${calc}${showCalc}`;
+    console.log("newCalc", newCalc);
     setCalc(newCalc);
+    console.log("newCalc.length, numberList.length", newCalc.length, numberList.join("").length);
 
-    if (newCalc.length === numberList.length) {
+    if (newCalc.length === numberList.join("").length) {
       let newScore = score;
       let newRound = round + 1;
       const checkVal = checkForward ? newCalc : newCalc.split("").reverse().join("");
@@ -97,7 +99,7 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
     const numberArray: string[] = [];
 
     for (let i = 0; i < length; i++) {
-      const randomNumber = Math.floor(Math.random() * 10);
+      const randomNumber = Math.floor(Math.random() * 12);
       if (numberArray[i - 1] !== `${randomNumber}`) {
         numberArray.push(`${randomNumber}`);
       } else {
@@ -140,7 +142,8 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
       <span onClick={() => openMenu()}>
         <Screen calc={calc} retVal={retVal} message={message} span={span} />
       </span>
-      <Buttons
+      <SpaceButtons
+        calc={calc}
         set={showCalc}
         startTest={restart}
         resetClick={resetClick}

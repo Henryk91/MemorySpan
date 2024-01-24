@@ -4,7 +4,7 @@ import DigitMemory from "./components/DigitMemory";
 import SpacialMemory from "./components/SpacialMemory";
 
 function App() {
-  const [selectedComponent, setSelectedComponent] = useState<string | undefined>();
+  const [selectedComponent, setSelectedComponent] = useState<string | undefined>("SpacialMemory");
   const openMenu = () => {
     setSelectedComponent(undefined);
   };
