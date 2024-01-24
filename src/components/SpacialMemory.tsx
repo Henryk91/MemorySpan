@@ -15,6 +15,7 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
   const [message, setMessage] = useState<string>("");
   const [retVal, setRetVal] = useState<string>("0/0");
   const [numberList, setNumberList] = useState<string[]>([]);
+  const [guessList, setGuessList] = useState<string[]>([]);
   const [intervalIdState, setIntervalIdState] = useState<string>();
 
   const runTest = useCallback(
@@ -29,9 +30,11 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
           index++;
         } else {
           setCalc("");
+          setGuessList([]);
         }
         if (index > numberListB.length) {
           setCalc("");
+          setGuessList([]);
           clearInterval(intervalId);
         }
       };
@@ -61,15 +64,16 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
       setMessage("");
     }
     const newCalc = `${calc}${showCalc}`;
-    console.log("newCalc", newCalc);
+    const newGuessList = [...guessList, showCalc];
+    setGuessList(newGuessList);
     setCalc(newCalc);
 
-    if (newCalc.length === numberList.join("").length) {
+    if (newGuessList.length === numberList.length) {
       let newScore = score;
       let newRound = round + 1;
-      const checkVal = checkForward ? newCalc : newCalc.split("").reverse().join("");
+      const checkVal = checkForward ? newGuessList : newGuessList.reverse();
 
-      if (checkVal === numberList.join("")) {
+      if (checkVal.toString() === numberList.toString()) {
         newScore++;
         setMessage("Correct !!!");
 
@@ -77,16 +81,18 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
           setRerunRound(true);
         }, 2000);
       } else {
-        setMessage("Incorrect !! !");
+        setMessage("Incorrect !!!");
         setActiveRound(!activeRound);
       }
       setCalc("");
+      setGuessList([]);
       setRetVal(`${newScore}/${newRound}`);
       setScore(newScore);
       setRound(newRound);
     } else if (newCalc.length > numberList.join("").length) {
       setMessage("Incorrect !!");
       setCalc("");
+      setGuessList([]);
       setRetVal(`${score}/${round + 1}`);
       setRound(round + 1);
       setActiveRound(false);
@@ -96,6 +102,7 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
   const resetClick = () => {
     setCalc("");
     setMessage("");
+    setGuessList([]);
   };
 
   const generateRandomList = (length: number) => {
