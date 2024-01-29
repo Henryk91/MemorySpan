@@ -15,9 +15,11 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
   const [isSlow, setIsSlow] = useState<boolean>(true);
   const [calc, setCalc] = useState<string>("");
   const [message, setMessage] = useState<string>("");
+  const [remainingTime, setRemainingTime] = useState<string>("");
   const [retVal, setRetVal] = useState<string>("0/0");
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
   const [shouldCheckConditions, setShouldCheckConditions] = useState<boolean>(false);
+  const [timerInterval, setTimerInterval] = useState<NodeJS.Timeout>();
 
   const addGoRound = useCallback(
     (correct: boolean) => {
@@ -120,9 +122,26 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
     setActiveRound(false);
   };
 
+  const startTimer = () => {
+    let time = 60;
+    const timerInterval = setInterval(() => {
+      if (time === 0) {
+        clearInterval(timerInterval);
+        setActiveRound(false);
+      } else {
+        time--;
+        setRemainingTime(`${time}`);
+      }
+    }, 1000);
+    setTimerInterval(timerInterval);
+  };
+
   const restart = () => {
     if (!activeRound) {
       setRerunRound(true);
+      startTimer();
+    } else {
+      clearInterval(timerInterval);
     }
     setActiveRound(!activeRound);
   };
@@ -148,7 +167,7 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
   return (
     <>
       <span onClick={() => openMenu()}>
-        <Screen calc={""} retVal={retVal} message={message} span={span} />
+        <Screen calc={remainingTime} retVal={retVal} message={message} span={span} />
       </span>
       <GoNoGoButtons
         calc={calc}
