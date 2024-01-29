@@ -103,7 +103,7 @@ body {
   grid-row-gap: 10px;
 }
 
-#flex-buttons {
+.flex-buttons {
   display: flex;
   grid-row-gap: 10px;
   flex-direction: column;

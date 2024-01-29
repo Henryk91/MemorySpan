@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 function GoNoGoButtons({
   calc,
@@ -25,29 +25,18 @@ function GoNoGoButtons({
   isSlow: boolean;
   activeRound: boolean;
 }) {
-  const [lastButton, setLastButton] = useState<string>("");
-  const [intervalIdState, setIntervalIdState] = useState<NodeJS.Timeout>();
-  const numberClick = (e: number) => {
-    setLastButton(`${e}`);
-    set({ showCalc: `${e}`, retVal: "0" });
-    if (intervalIdState) {
-      clearTimeout(intervalIdState);
-    }
-    const x = setTimeout(() => {
-      setLastButton("");
-    }, 1000);
-    setIntervalIdState(x);
+  const numberClick = () => {
+    set({ showCalc: `7`, retVal: "0" });
   };
 
-  const checkActive = (buttonNumber: number) => {
+  const checkActive = () => {
     if (calc === `${1}`) return "buttonNoGoClass";
     if (calc === `${2}`) return "buttonGoClass";
     return "";
-    // return calc === `${1}` ? "buttonNoGoClass" : calc === `${2}` ? "buttonGoClass" : "";
   };
 
   return (
-    <div id="flex-buttons">
+    <div className="flex-buttons" id="noGoButtons">
       <div className="buttonRow">
         <button id="clear" className="smallButtonFont" onClick={resetClick}>
           AC
@@ -56,23 +45,8 @@ function GoNoGoButtons({
           {checkForward ? "Forward" : "Reverse"}
         </button>
       </div>
-      <div className="buttonRow">
-        <button className={checkActive(7)} id="seven" onClick={() => numberClick(7)}></button>
-        <button className={checkActive(8)} id="eight" onClick={() => numberClick(8)}></button>
-        <button className={checkActive(9)} id="nine" onClick={() => numberClick(9)}></button>
-        <button id="subtract" className={`${checkActive(10)}`} onClick={() => numberClick(10)}></button>
-      </div>
-      <div className="buttonRow">
-        <button className={checkActive(4)} id="four" onClick={() => numberClick(4)}></button>
-        <button className={checkActive(5)} id="five" onClick={() => numberClick(5)}></button>
-        <button className={checkActive(6)} id="six" onClick={() => numberClick(6)}></button>
-        <button id="add" className={`${checkActive(11)}`} onClick={() => numberClick(11)}></button>
-      </div>
-      <div className="buttonRow">
-        <button className={checkActive(1)} id="one" onClick={() => numberClick(1)}></button>
-        <button className={checkActive(2)} id="two" onClick={() => numberClick(2)}></button>
-        <button className={checkActive(3)} id="three" onClick={() => numberClick(3)}></button>
-        <button className={checkActive(0)} id="three" onClick={() => numberClick(0)}></button>
+      <div className="buttonRow height100">
+        <button className={`${checkActive()} height100`} id="goNoGoButton" onClick={() => numberClick()}></button>
       </div>
       <div className="buttonRow">
         <button id="subtract" onClick={decreaseSpan}>

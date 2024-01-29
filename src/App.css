@@ -59,3 +59,12 @@
   background-color: green;
   border-color: green;
 }
+#goNoGoButton {
+  height: 100%;
+}
+#noGoButtons {
+  height: 100%;
+}
+.height100 {
+  height: 100%;
+}

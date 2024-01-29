@@ -44,7 +44,7 @@ function SpaceButtons({
   };
 
   return (
-    <div id="flex-buttons">
+    <div className="flex-buttons">
       <div className="buttonRow">
         <button id="clear" className="smallButtonFont" onClick={resetClick}>
           AC

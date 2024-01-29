@@ -28,7 +28,7 @@ function Buttons({
   };
 
   return (
-    <div id="flex-buttons">
+    <div className="flex-buttons">
       <div className="buttonRow">
         <button id="clear" onClick={resetClick}>
           AC
