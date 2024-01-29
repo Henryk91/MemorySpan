@@ -114,7 +114,6 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
       addGoRound(true);
       setMessage("Correct !!!");
       setCalc("");
-      setMessage("");
       setTimeout(() => {
         setMessage("");
         if (activeRound) setRerunRound(true);
