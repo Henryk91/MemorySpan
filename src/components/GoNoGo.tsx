@@ -86,7 +86,7 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
     }
   }, [rerunRound, setRerunRound, runTest]);
 
-  const showCalc = ({ showCalc, retVal }: { showCalc: string; retVal: string }) => {
+  const buttonPress = () => {
     clearTimeout(timeoutId);
     setTimeoutId(undefined);
 
@@ -151,7 +151,7 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
       </span>
       <GoNoGoButtons
         calc={calc}
-        set={showCalc}
+        buttonPress={buttonPress}
         startTest={restart}
         resetClick={resetClick}
         increaseSpan={increaseSpan}

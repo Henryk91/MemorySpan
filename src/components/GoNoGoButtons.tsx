@@ -2,7 +2,7 @@ import React from "react";
 
 function GoNoGoButtons({
   calc,
-  set,
+  buttonPress,
   startTest,
   resetClick,
   increaseSpan,
@@ -14,7 +14,7 @@ function GoNoGoButtons({
   activeRound,
 }: {
   calc: string;
-  set: (val: { showCalc: string; retVal: string }) => void;
+  buttonPress: () => void;
   startTest: () => void;
   resetClick: () => void;
   increaseSpan: () => void;
@@ -25,10 +25,6 @@ function GoNoGoButtons({
   isSlow: boolean;
   activeRound: boolean;
 }) {
-  const numberClick = () => {
-    set({ showCalc: `7`, retVal: "0" });
-  };
-
   const checkActive = () => {
     if (calc === `${1}`) return "buttonNoGoClass";
     if (calc === `${2}`) return "buttonGoClass";
@@ -46,7 +42,7 @@ function GoNoGoButtons({
         </button>
       </div>
       <div className="buttonRow height100">
-        <button className={`${checkActive()} height100`} id="goNoGoButton" onClick={() => numberClick()}></button>
+        <button className={`${checkActive()} height100`} id="goNoGoButton" onClick={() => buttonPress()}></button>
       </div>
       <div className="buttonRow">
         <button id="subtract" onClick={decreaseSpan}>
