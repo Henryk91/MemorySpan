@@ -68,22 +68,22 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
   useEffect(() => {
     if (shouldCheckConditions) {
       setShouldCheckConditions(false);
+      setCalc("");
+      if (!activeRound) return;
       if (calc === "1") {
         setMessage("Correct !!!");
-        setCalc("");
         setTimeout(() => {
           setMessage("");
-          if (activeRound) setRerunRound(true);
+          setRerunRound(true);
         }, 1000);
         addNoGoRound(true);
       } else {
         setMessage("You should have pressed it");
-        setCalc("");
         console.log("useEffect activeRound", activeRound);
         addGoRound(false);
         setTimeout(() => {
           setMessage("");
-          if (activeRound) setRerunRound(true);
+          setRerunRound(true);
         }, 1000);
       }
     }
@@ -92,7 +92,6 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
   useEffect(() => {
     if (rerunRound) {
       setRerunRound(false);
-
       runTest();
     }
   }, [rerunRound, setRerunRound, runTest]);
