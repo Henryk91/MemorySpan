@@ -54,7 +54,7 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
     };
 
     setOption();
-  }, [activeRound, setShouldCheckConditions, shouldCheckConditions, span]);
+  }, [setShouldCheckConditions, shouldCheckConditions, span]);
 
   useEffect(() => {
     if (shouldCheckConditions) {
@@ -87,6 +87,7 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
   }, [rerunRound, setRerunRound, runTest]);
 
   const buttonPress = () => {
+    if (calc === "") return;
     clearTimeout(timeoutId);
     setTimeoutId(undefined);
 
