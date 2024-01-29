@@ -50,3 +50,12 @@
   background-color: red;
   border-color: red;
 }
+
+.buttonNoGoClass {
+  background-color: red;
+  border-color: red;
+}
+.buttonGoClass {
+  background-color: green;
+  border-color: green;
+}
