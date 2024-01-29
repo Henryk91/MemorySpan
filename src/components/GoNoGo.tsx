@@ -21,15 +21,11 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
 
   const addGoRound = useCallback(
     (correct: boolean) => {
-      console.log("");
       const score = goScore + (correct ? 1 : 0);
       const round = goRound + 1;
-      console.log("addGoRound", score, round);
-      console.log("");
       setGoRound(round);
       setGoScore(score);
       const msg = `Go: ${score}/${round} NoGO: ${noGoScore}/${goNoRound}`;
-      console.log("msg", msg);
       setRetVal(msg);
     },
     [goRound, goScore, goNoRound, noGoScore]
@@ -38,7 +34,6 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
     (correct: boolean) => {
       const score = noGoScore + (correct ? 1 : 0);
       const round = goNoRound + 1;
-      console.log("addGoRound", score, round);
       setGoNoRound(round);
       setNoGoScore(score);
       const msg = `Go: ${goScore}/${goRound} NoGO: ${score}/${round}`;
@@ -48,13 +43,9 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
   );
 
   const runTest = useCallback(() => {
-    console.log("activeRound", activeRound);
-
     const setOption = () => {
       const rand = Math.random();
-      console.log("rand", rand);
       const button = rand > span / 10 ? "2" : "1";
-      console.log("button", button);
       setCalc(button);
       const timeoutId = setTimeout(() => {
         setShouldCheckConditions(!shouldCheckConditions);
@@ -79,7 +70,6 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
         addNoGoRound(true);
       } else {
         setMessage("You should have pressed it");
-        console.log("useEffect activeRound", activeRound);
         addGoRound(false);
         setTimeout(() => {
           setMessage("");
@@ -97,8 +87,6 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
   }, [rerunRound, setRerunRound, runTest]);
 
   const showCalc = ({ showCalc, retVal }: { showCalc: string; retVal: string }) => {
-    console.log("showCalc", showCalc);
-
     clearTimeout(timeoutId);
     setTimeoutId(undefined);
 
@@ -132,7 +120,6 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
   };
 
   const restart = () => {
-    console.log("activeRound", activeRound);
     if (!activeRound) {
       setRerunRound(true);
     }
