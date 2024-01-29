@@ -161,7 +161,7 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
   return (
     <>
       <span onClick={() => openMenu()}>
-        <Screen calc={"Go No-Go"} retVal={retVal} message={message} span={span} />
+        <Screen calc={""} retVal={retVal} message={message} span={span} />
       </span>
       <GoNoGoButtons
         calc={calc}
