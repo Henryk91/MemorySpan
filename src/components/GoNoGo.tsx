@@ -75,7 +75,7 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
         setTimeout(() => {
           setMessage("");
           setRerunRound(true);
-        }, 200);
+        }, 300);
         addNoGoRound(true);
       } else {
         setMessage("You should have pressed it");
@@ -118,7 +118,7 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
       setTimeout(() => {
         setMessage("");
         if (activeRound) setRerunRound(true);
-      }, 200);
+      }, 300);
     }
   };
 
