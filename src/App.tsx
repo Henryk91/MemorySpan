@@ -5,7 +5,7 @@ import SpacialMemory from "./components/SpacialMemory";
 import GoNoGo from "./components/GoNoGo";
 
 function App() {
-  const [selectedComponent, setSelectedComponent] = useState<string | undefined>("GoNo-Go");
+  const [selectedComponent, setSelectedComponent] = useState<string | undefined>();
   const openMenu = () => {
     setSelectedComponent(undefined);
   };
