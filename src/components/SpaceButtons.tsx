@@ -50,12 +50,10 @@ function SpaceButtons({
   return (
     <div className="flex-buttons">
       <div className="buttonRow">
-        <button id="clear" className="smallButtonFont" onClick={resetClick}>
-          AC
-        </button>
-        <button id="clear" onClick={smartClick} className="smallButtonFont">
-          Smart
-          {isSmart ? " on" : " off"}
+        <button onClick={resetClick}>AC</button>
+        <button onClick={smartClick} className="block smallButtonFont">
+          <p>Smart </p>
+          <p>{isSmart ? "On" : "Off"}</p>
         </button>
         <button id="multiply" className="smallButtonFont" onClick={toggleCheckForward}>
           {checkForward ? "Forward" : "Reverse"}

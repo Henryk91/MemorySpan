@@ -123,9 +123,6 @@ button {
 button:active {
   background-color: rgba(255, 226, 197, 0.5);
 }
-#clear {
-  grid-column: 1/3;
-}
 
 #multiply {
   grid-column: 3/5;
@@ -162,6 +159,9 @@ button:active {
   flex-direction: row;
   align-content: stretch;
   flex-wrap: wrap;
+}
+.block {
+  display: block !important;
 }
 .buttonRow > button {
   flex-grow: 1;
