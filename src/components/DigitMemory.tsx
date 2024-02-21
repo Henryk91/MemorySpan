@@ -105,7 +105,7 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
         setMessage("Wrong: " + expectedVal);
         const newSmartCount = smartCount - 1;
         const msg =
-          isSmart && newSmartCount === -2 ? `Wrong: ${expectedVal}  Span:${span + 1}` : `Wrong: ${expectedVal}`;
+          isSmart && newSmartCount === -2 ? `Wrong: ${expectedVal}  Span:${span - 1}` : `Wrong: ${expectedVal}`;
         setMessage(msg);
         if (isSmart) setSmartCount(newSmartCount);
         setActiveRound(false);

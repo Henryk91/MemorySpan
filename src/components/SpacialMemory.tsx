@@ -89,16 +89,20 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
 
       if (checkVal.toString() === numberList.toString()) {
         newScore++;
-        setMessage("Correct !!!");
-        setSmartCount(smartCount + 1);
+        const newSmartCount = smartCount + 1;
+        const msg = isSmart && newSmartCount === 2 ? `Correct !!! Span: ${span + 1}` : "Correct !!!";
+        setMessage(msg);
+        if (isSmart) setSmartCount(newSmartCount);
 
         setTimeout(() => {
           setRerunRound(true);
         }, 2000);
       } else {
-        setMessage("Incorrect !!!");
         setActiveRound(!activeRound);
-        setSmartCount(smartCount - 1);
+        const newSmartCount = smartCount - 1;
+        const msg = isSmart && newSmartCount === -2 ? `Incorrect !!!  Span:${span - 1}` : "Incorrect !!!";
+        setMessage(msg);
+        if (isSmart) setSmartCount(newSmartCount);
       }
       setCalc("");
       setGuessList([]);
