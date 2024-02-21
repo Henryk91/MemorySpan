@@ -10,6 +10,7 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
   const [score, setScore] = useState<number>(0);
   const [span, setSpan] = useState<number>(5);
   const [checkForward, setCheckForward] = useState<boolean>(true);
+  const [activeMemorize, setActiveMemorize] = useState<boolean>(false);
   const [isSlow, setIsSlow] = useState<boolean>(true);
   const [isSmart, setIsSmart] = useState<boolean>(false);
   const [smartCount, setSmartCount] = useState<number>(0);
@@ -35,8 +36,11 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
         if (index > numberListB.length) {
           setCalc("");
           clearInterval(intervalId);
+          setActiveMemorize(false);
         }
       };
+
+      iterateNumbers();
 
       intervalId = setInterval(iterateNumbers, isSlow ? 1000 : 600);
       setIntervalIdState(intervalId);
@@ -46,6 +50,7 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
 
   const startTest = useCallback(() => {
     setRerunRound(false);
+    setActiveMemorize(true);
     setCalc("");
     setMessage("");
     let localSpan = span;
@@ -84,8 +89,11 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
 
       if (checkVal === numberList.join("")) {
         newScore++;
-        setMessage("Correct !!!");
-        setSmartCount(smartCount + 1);
+        const newSmartCount = smartCount + 1;
+        const msg = isSmart && newSmartCount === 2 ? `Correct !!! Span: ${span + 1}` : "Correct !!!";
+        setMessage(msg);
+        if (isSmart) setSmartCount(newSmartCount);
+        setActiveMemorize(false);
 
         setTimeout(() => {
           setRerunRound(true);
@@ -95,7 +103,11 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
           ? numberList.join("")
           : JSON.parse(JSON.stringify(numberList)).reverse().join("");
         setMessage("Wrong: " + expectedVal);
-        setSmartCount(smartCount - 1);
+        const newSmartCount = smartCount - 1;
+        const msg =
+          isSmart && newSmartCount === -2 ? `Wrong: ${expectedVal}  Span:${span + 1}` : `Wrong: ${expectedVal}`;
+        setMessage(msg);
+        if (isSmart) setSmartCount(newSmartCount);
         setActiveRound(false);
       }
       setCalc("");
@@ -159,7 +171,7 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
   return (
     <>
       <span onClick={() => openMenu()}>
-        <Screen calc={calc} retVal={retVal} message={message} span={span} />
+        <Screen calc={calc} retVal={retVal} message={message} span={span} active={activeMemorize} />
       </span>
       <Buttons
         set={showCalc}

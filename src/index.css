@@ -76,7 +76,7 @@ body {
 .textCenter {
   text-align: center;
 }
-#messageBox {
+.messageBox {
   display: flex;
   text-align: center;
   justify-content: center;

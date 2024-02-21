@@ -1,20 +1,40 @@
 import React from "react";
 
-function Screen({ retVal, calc, message, span }: { retVal: string; calc: string; message: string; span: number }) {
+function Screen({
+  retVal,
+  calc,
+  message,
+  active = false,
+  span,
+}: {
+  retVal: string;
+  calc: string;
+  message: string;
+  active?: boolean;
+  span: number;
+}) {
   return (
     <div id="displayScreen">
       {message !== "" ? (
-        <div id="messageBox">{message}</div>
+        <div className="messageBox">{message}</div>
       ) : (
-        <div id="insideScreen">
-          <div className="infoBlock textLeft">
-            <div>Score: {retVal}</div>
-            <div>Span: {span}</div>
-          </div>
-          <div className="infoBlock textRight center">
-            <div id="display">{calc}</div>
-          </div>
-        </div>
+        <>
+          {active ? (
+            <div className="messageBox" id="display">
+              {calc}
+            </div>
+          ) : (
+            <div id="insideScreen">
+              <div className="infoBlock textLeft">
+                <div>Score: {retVal}</div>
+                <div>Span: {span}</div>
+              </div>
+              <div className="infoBlock textRight center">
+                <div id="display">{calc}</div>
+              </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
