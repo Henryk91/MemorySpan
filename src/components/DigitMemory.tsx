@@ -11,6 +11,8 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
   const [span, setSpan] = useState<number>(5);
   const [checkForward, setCheckForward] = useState<boolean>(true);
   const [isSlow, setIsSlow] = useState<boolean>(true);
+  const [isSmart, setIsSmart] = useState<boolean>(false);
+  const [smartCount, setSmartCount] = useState<number>(0);
   const [calc, setCalc] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [retVal, setRetVal] = useState<string>("0/0");
@@ -46,11 +48,23 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
     setRerunRound(false);
     setCalc("");
     setMessage("");
+    let localSpan = span;
+    if (smartCount === 2) {
+      localSpan++;
+      setSpan(localSpan);
+      setSmartCount(0);
+    }
+    if (smartCount === -2) {
+      localSpan--;
+      if (localSpan < 1) localSpan = 1;
+      setSpan(localSpan);
+      setSmartCount(0);
+    }
     if (intervalIdState) clearInterval(intervalIdState);
-    const numbers = generateRandomList(span);
+    const numbers = generateRandomList(localSpan);
     setNumberList(numbers);
     runTest(numbers);
-  }, [intervalIdState, runTest, span]);
+  }, [intervalIdState, runTest, span, smartCount]);
 
   useEffect(() => {
     if (rerunRound && activeRound) startTest();
@@ -71,6 +85,7 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
       if (checkVal === numberList.join("")) {
         newScore++;
         setMessage("Correct !!!");
+        setSmartCount(smartCount + 1);
 
         setTimeout(() => {
           setRerunRound(true);
@@ -80,6 +95,8 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
           ? numberList.join("")
           : JSON.parse(JSON.stringify(numberList)).reverse().join("");
         setMessage("Wrong: " + expectedVal);
+        setSmartCount(smartCount - 1);
+        setActiveRound(false);
       }
       setCalc("");
       setRetVal(`${newScore}/${newRound}`);
@@ -91,6 +108,10 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
   const resetClick = () => {
     setCalc("");
     setMessage("");
+  };
+
+  const smartClick = () => {
+    setIsSmart(!isSmart);
   };
 
   const generateRandomList = (length: number) => {
@@ -144,10 +165,12 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
         set={showCalc}
         startTest={restart}
         resetClick={resetClick}
+        smartClick={smartClick}
         increaseSpan={increaseSpan}
         decreaseSpan={decreaseSpan}
         checkForward={checkForward}
         isSlow={isSlow}
+        isSmart={isSmart}
         toggleCheckForward={toggleCheckForward}
         toggleIsSlow={toggleIsSlow}
         activeRound={activeRound}
