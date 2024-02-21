@@ -55,7 +55,7 @@ function SpaceButtons({
         </button>
         <button id="clear" onClick={smartClick} className="smallButtonFont">
           Smart
-          {isSmart ? " ++" : " --"}
+          {isSmart ? " on" : " off"}
         </button>
         <button id="multiply" className="smallButtonFont" onClick={toggleCheckForward}>
           {checkForward ? "Forward" : "Reverse"}
