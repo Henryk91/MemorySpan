@@ -11,6 +11,8 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
   const [span, setSpan] = useState<number>(5);
   const [checkForward, setCheckForward] = useState<boolean>(true);
   const [isSlow, setIsSlow] = useState<boolean>(true);
+  const [isSmart, setIsSmart] = useState<boolean>(false);
+  const [smartCount, setSmartCount] = useState<number>(0);
   const [calc, setCalc] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [retVal, setRetVal] = useState<string>("0/0");
@@ -49,11 +51,23 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
     setRerunRound(false);
     setCalc("");
     setMessage("");
+    let localSpan = span;
+    if (smartCount === 2) {
+      localSpan++;
+      setSpan(localSpan);
+      setSmartCount(0);
+    }
+    if (smartCount === -2) {
+      localSpan--;
+      if (localSpan < 1) localSpan = 1;
+      setSpan(localSpan);
+      setSmartCount(0);
+    }
     if (intervalIdState) clearInterval(intervalIdState);
-    const numbers = generateRandomList(span);
+    const numbers = generateRandomList(localSpan);
     setNumberList(numbers);
     runTest(numbers);
-  }, [intervalIdState, runTest, span]);
+  }, [intervalIdState, runTest, span, smartCount]);
 
   useEffect(() => {
     if (rerunRound && activeRound) startTest();
@@ -76,6 +90,7 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
       if (checkVal.toString() === numberList.toString()) {
         newScore++;
         setMessage("Correct !!!");
+        setSmartCount(smartCount + 1);
 
         setTimeout(() => {
           setRerunRound(true);
@@ -83,6 +98,7 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
       } else {
         setMessage("Incorrect !!!");
         setActiveRound(!activeRound);
+        setSmartCount(smartCount - 1);
       }
       setCalc("");
       setGuessList([]);
@@ -147,6 +163,10 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
     setIsSlow(!isSlow);
   };
 
+  const smartClick = () => {
+    setIsSmart(!isSmart);
+  };
+
   return (
     <>
       <span onClick={() => openMenu()}>
@@ -157,10 +177,12 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
         set={showCalc}
         startTest={restart}
         resetClick={resetClick}
+        smartClick={smartClick}
         increaseSpan={increaseSpan}
         decreaseSpan={decreaseSpan}
         checkForward={checkForward}
         isSlow={isSlow}
+        isSmart={isSmart}
         toggleCheckForward={toggleCheckForward}
         toggleIsSlow={toggleIsSlow}
         activeRound={activeRound}

@@ -5,24 +5,28 @@ function SpaceButtons({
   set,
   startTest,
   resetClick,
+  smartClick,
   increaseSpan,
   decreaseSpan,
   toggleCheckForward,
   toggleIsSlow,
   checkForward,
   isSlow,
+  isSmart,
   activeRound,
 }: {
   calc: string;
   set: (val: { showCalc: string; retVal: string }) => void;
   startTest: () => void;
   resetClick: () => void;
+  smartClick: () => void;
   increaseSpan: () => void;
   decreaseSpan: () => void;
   toggleCheckForward: () => void;
   toggleIsSlow: () => void;
   checkForward: boolean;
   isSlow: boolean;
+  isSmart: boolean;
   activeRound: boolean;
 }) {
   const [lastButton, setLastButton] = useState<string>("");
@@ -48,6 +52,10 @@ function SpaceButtons({
       <div className="buttonRow">
         <button id="clear" className="smallButtonFont" onClick={resetClick}>
           AC
+        </button>
+        <button id="clear" onClick={smartClick} className="smallButtonFont">
+          Smart
+          {isSmart ? " ++" : " --"}
         </button>
         <button id="multiply" className="smallButtonFont" onClick={toggleCheckForward}>
           {checkForward ? "Forward" : "Reverse"}
