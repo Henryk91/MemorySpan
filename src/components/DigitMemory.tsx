@@ -195,13 +195,17 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
       };
     });
     const keys = Object.keys(data);
+    let total = 0;
+    let score = 0;
     const scores = keys
       .map((key) => {
         const item = data[key];
+        total += item.count;
+        score += item.success;
         return `Length: ${key} score: ${item.success}/${item.count}`;
       })
       .join("\n");
-    return scores;
+    return `${scores}\nTotal: ${score}/${total}`;
   };
   const showLogs = () => {
     if (!startTime) return;
