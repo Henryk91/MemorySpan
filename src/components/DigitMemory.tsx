@@ -3,6 +3,11 @@ import "../App.css";
 import Buttons from "./Buttons";
 import Screen from "./Screen";
 
+interface LogItem {
+  number: string;
+  correct: boolean;
+}
+
 function DigitMemory({ openMenu }: { openMenu: () => void }) {
   const [activeRound, setActiveRound] = useState<boolean>(false);
   const [rerunRound, setRerunRound] = useState<boolean>(false);
@@ -19,6 +24,10 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
   const [retVal, setRetVal] = useState<string>("0/0");
   const [numberList, setNumberList] = useState<string[]>([]);
   const [intervalIdState, setIntervalIdState] = useState<string>();
+
+  const [startTime, setStartTime] = useState<string>();
+  const [lastTime, setLastTime] = useState<string>();
+  const [logList, setLogList] = useState<LogItem[]>();
 
   const runTest = useCallback(
     (numberListB: string[]) => {
@@ -77,15 +86,18 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
     if (message) {
       setMessage("");
     }
+
     const newCalc = `${calc}${showCalc}`;
     setCalc(newCalc);
+    setLastTime(new Date().toString());
 
     if (newCalc.length === numberList.length) {
       let newScore = score;
       let newRound = round + 1;
       const checkVal = checkForward ? newCalc : newCalc.split("").reverse().join("");
-
+      const log = { number: checkVal, correct: false };
       if (checkVal === numberList.join("")) {
+        log.correct = true;
         newScore++;
         const newSmartCount = smartCount + 1;
         const msg = isSmart && newSmartCount === 2 ? `Correct !!! Span: ${span + 1}` : "Correct !!!";
@@ -108,6 +120,7 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
         if (isSmart) setSmartCount(newSmartCount);
         setActiveRound(false);
       }
+      setLogList(logList ? [...logList, log] : [log]);
       setCalc("");
       setRetVal(`${newScore}/${newRound}`);
       setScore(newScore);
@@ -140,6 +153,9 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
   };
 
   const restart = () => {
+    if (!startTime) {
+      setStartTime(new Date().toString());
+    }
     if (!activeRound) {
       setRerunRound(true);
       resetClick();
@@ -166,6 +182,34 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
     setIsSlow(!isSlow);
   };
 
+  const getMappedLogData = () => {
+    const data: { [key: string]: { count: number; success: number } } = {};
+    logList?.forEach((item) => {
+      const length = item.number.length.toString();
+      if (!data[length]) data[length] = { count: 0, success: 0 };
+
+      const lengthScore = data[length];
+      data[length] = {
+        count: lengthScore.count + 1,
+        success: item.correct ? lengthScore.success + 1 : lengthScore.success,
+      };
+    });
+    const keys = Object.keys(data);
+    const scores = keys
+      .map((key) => {
+        const item = data[key];
+        return `Length: ${key} score: ${item.success}/${item.count}`;
+      })
+      .join("\n");
+    return scores;
+  };
+  const showLogs = () => {
+    if (!startTime) return;
+    const scoreString = getMappedLogData();
+    const logString = `Start Time: ${startTime}\nEnd Time: ${lastTime}\n${scoreString}`;
+    navigator.clipboard.writeText(logString);
+  };
+
   return (
     <>
       <span onClick={() => openMenu()}>
@@ -183,6 +227,7 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
         isSmart={isSmart}
         toggleCheckForward={toggleCheckForward}
         toggleIsSlow={toggleIsSlow}
+        showLogs={showLogs}
         activeRound={activeRound}
       />
     </>

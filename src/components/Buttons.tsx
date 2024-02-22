@@ -9,6 +9,7 @@ function Buttons({
   decreaseSpan,
   toggleCheckForward,
   toggleIsSlow,
+  showLogs,
   checkForward,
   isSlow,
   isSmart,
@@ -22,6 +23,7 @@ function Buttons({
   decreaseSpan: () => void;
   toggleCheckForward: () => void;
   toggleIsSlow: () => void;
+  showLogs: () => void;
   checkForward: boolean;
   isSlow: boolean;
   isSmart: boolean;
@@ -93,6 +95,9 @@ function Buttons({
         </button>
         <button id="decimal" className="smallButtonFont" onClick={toggleIsSlow}>
           {isSlow ? "Slow" : "Fast"}
+        </button>
+        <button id="decimal" className="smallButtonFont" onClick={showLogs}>
+          Logs
         </button>
       </div>
     </div>

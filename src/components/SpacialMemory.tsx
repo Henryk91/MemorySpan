@@ -3,6 +3,11 @@ import "../App.css";
 import SpaceButtons from "./SpaceButtons";
 import Screen from "./Screen";
 
+interface LogItem {
+  number: string[];
+  correct: boolean;
+}
+
 function SpacialMemory({ openMenu }: { openMenu: () => void }) {
   const [activeRound, setActiveRound] = useState<boolean>(false);
   const [rerunRound, setRerunRound] = useState<boolean>(false);
@@ -19,6 +24,10 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
   const [numberList, setNumberList] = useState<string[]>([]);
   const [guessList, setGuessList] = useState<string[]>([]);
   const [intervalIdState, setIntervalIdState] = useState<string>();
+
+  const [startTime, setStartTime] = useState<string>();
+  const [lastTime, setLastTime] = useState<string>();
+  const [logList, setLogList] = useState<LogItem[]>();
 
   const runTest = useCallback(
     (numberListB: string[]) => {
@@ -81,14 +90,17 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
     const newGuessList = [...guessList, showCalc];
     setGuessList(newGuessList);
     setCalc(newCalc);
+    setLastTime(new Date().toString());
 
     if (newGuessList.length === numberList.length) {
       let newScore = score;
       let newRound = round + 1;
       const checkVal = checkForward ? newGuessList : newGuessList.reverse();
 
+      const log: LogItem = { number: checkVal, correct: false };
       if (checkVal.toString() === numberList.toString()) {
         newScore++;
+        log.correct = true;
         const newSmartCount = smartCount + 1;
         const msg = isSmart && newSmartCount === 2 ? `Correct !!! Span: ${span + 1}` : "Correct !!!";
         setMessage(msg);
@@ -104,6 +116,7 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
         setMessage(msg);
         if (isSmart) setSmartCount(newSmartCount);
       }
+      setLogList(logList ? [...logList, log] : [log]);
       setCalc("");
       setGuessList([]);
       setRetVal(`${newScore}/${newRound}`);
@@ -141,6 +154,9 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
   };
 
   const restart = () => {
+    if (!startTime) {
+      setStartTime(new Date().toString());
+    }
     if (!activeRound) {
       setRerunRound(true);
       resetClick();
@@ -167,6 +183,34 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
     setIsSlow(!isSlow);
   };
 
+  const getMappedLogData = () => {
+    const data: { [key: string]: { count: number; success: number } } = {};
+    logList?.forEach((item) => {
+      const length = item.number.length.toString();
+      if (!data[length]) data[length] = { count: 0, success: 0 };
+
+      const lengthScore = data[length];
+      data[length] = {
+        count: lengthScore.count + 1,
+        success: item.correct ? lengthScore.success + 1 : lengthScore.success,
+      };
+    });
+    const keys = Object.keys(data);
+    const scores = keys
+      .map((key) => {
+        const item = data[key];
+        return `Length: ${key} score: ${item.success}/${item.count}`;
+      })
+      .join("\n");
+    return scores;
+  };
+  const showLogs = () => {
+    if (!startTime) return;
+    const scoreString = getMappedLogData();
+    const logString = `Start Time: ${startTime}\nEnd Time: ${lastTime}\n${scoreString}`;
+    navigator.clipboard.writeText(logString);
+  };
+
   const smartClick = () => {
     setIsSmart(!isSmart);
   };
@@ -189,6 +233,7 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
         isSmart={isSmart}
         toggleCheckForward={toggleCheckForward}
         toggleIsSlow={toggleIsSlow}
+        showLogs={showLogs}
         activeRound={activeRound}
       />
     </>

@@ -10,6 +10,7 @@ function SpaceButtons({
   decreaseSpan,
   toggleCheckForward,
   toggleIsSlow,
+  showLogs,
   checkForward,
   isSlow,
   isSmart,
@@ -24,6 +25,7 @@ function SpaceButtons({
   decreaseSpan: () => void;
   toggleCheckForward: () => void;
   toggleIsSlow: () => void;
+  showLogs: () => void;
   checkForward: boolean;
   isSlow: boolean;
   isSmart: boolean;
@@ -55,27 +57,30 @@ function SpaceButtons({
           <p>Smart </p>
           <p>{isSmart ? "On" : "Off"}</p>
         </button>
-        <button id="multiply" className="smallButtonFont" onClick={toggleCheckForward}>
-          {checkForward ? "Forward" : "Reverse"}
+        <button id="multiply" onClick={toggleCheckForward}>
+          {checkForward ? ">>" : "<<"}
+        </button>
+        <button id="multiply" className="smallButtonFont" onClick={showLogs}>
+          Logs
         </button>
       </div>
       <div className="buttonRow">
         <button className={checkActive(7)} id="seven" onClick={() => numberClick(7)}></button>
         <button className={checkActive(8)} id="eight" onClick={() => numberClick(8)}></button>
         <button className={checkActive(9)} id="nine" onClick={() => numberClick(9)}></button>
-        <button id="subtract" className={`${checkActive(10)}`} onClick={() => numberClick(10)}></button>
+        <button className={checkActive(10)} id="ten" onClick={() => numberClick(10)}></button>
       </div>
       <div className="buttonRow">
         <button className={checkActive(4)} id="four" onClick={() => numberClick(4)}></button>
         <button className={checkActive(5)} id="five" onClick={() => numberClick(5)}></button>
         <button className={checkActive(6)} id="six" onClick={() => numberClick(6)}></button>
-        <button id="add" className={`${checkActive(11)}`} onClick={() => numberClick(11)}></button>
+        <button className={checkActive(11)} id="eleven" onClick={() => numberClick(11)}></button>
       </div>
       <div className="buttonRow">
         <button className={checkActive(1)} id="one" onClick={() => numberClick(1)}></button>
         <button className={checkActive(2)} id="two" onClick={() => numberClick(2)}></button>
         <button className={checkActive(3)} id="three" onClick={() => numberClick(3)}></button>
-        <button className={checkActive(0)} id="three" onClick={() => numberClick(0)}></button>
+        <button className={checkActive(0)} id="zero" onClick={() => numberClick(0)}></button>
       </div>
       <div className="buttonRow">
         <button id="subtract" onClick={decreaseSpan}>
