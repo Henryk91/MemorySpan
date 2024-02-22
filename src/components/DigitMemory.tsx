@@ -40,8 +40,6 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
         }
       };
 
-      iterateNumbers();
-
       intervalId = setInterval(iterateNumbers, isSlow ? 1000 : 600);
       setIntervalIdState(intervalId);
     },
