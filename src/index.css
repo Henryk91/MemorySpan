@@ -172,3 +172,12 @@ button:active {
   justify-content: center;
   align-items: center;
 }
+
+.smartButton {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-evenly !important;
+}
+.smartButton > p {
+  margin: inherit;
+}
