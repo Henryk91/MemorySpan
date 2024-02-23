@@ -210,7 +210,7 @@ function DigitMemory({ openMenu }: { openMenu: () => void }) {
   const showLogs = () => {
     if (!startTime) return;
     const scoreString = getMappedLogData();
-    const logString = `DigitMemory:\nStart Time: ${startTime}\nEnd Time: ${lastTime}\n${scoreString}`;
+    const logString = `Digit Memory:\nStart Time: ${startTime}\nEnd Time: ${lastTime}\n${scoreString}`;
     navigator.clipboard.writeText(logString);
   };
 

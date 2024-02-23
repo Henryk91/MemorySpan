@@ -211,7 +211,7 @@ function SpacialMemory({ openMenu }: { openMenu: () => void }) {
   const showLogs = () => {
     if (!startTime) return;
     const scoreString = getMappedLogData();
-    const logString = `SpacialMemory:\nStart Time: ${startTime}\nEnd Time: ${lastTime}\n${scoreString}`;
+    const logString = `Spacial Memory:\nStart Time: ${startTime}\nEnd Time: ${lastTime}\n${scoreString}`;
     navigator.clipboard.writeText(logString);
   };
 
