@@ -1,21 +1,11 @@
 @font-face {
   font-family: "American Typewriter";
-  src: url("//db.onlinewebfonts.com/t/940ace70d6c766e685a20dea33762abf.eot");
-  src: url("//db.onlinewebfonts.com/t/940ace70d6c766e685a20dea33762abf.eot?#iefix") format("embedded-opentype"),
-    /* url("//db.onlinewebfonts.com/t/940ace70d6c766e685a20dea33762abf.woff2") format("woff2"), */
-      url("//db.onlinewebfonts.com/t/940ace70d6c766e685a20dea33762abf.woff") format("woff"),
-    url("//db.onlinewebfonts.com/t/940ace70d6c766e685a20dea33762abf.ttf") format("truetype"),
-    url("//db.onlinewebfonts.com/t/940ace70d6c766e685a20dea33762abf.svg#American Typewriter") format("svg");
+  src: url("./fonts/940ace70d6c766e685a20dea33762abf.woff") format("woff2");
 }
 
 @font-face {
   font-family: "OPTICalculator";
-  src: url("//db.onlinewebfonts.com/t/a4e40941cd04772dbe49aa5790ad5905.eot");
-  src: url("//db.onlinewebfonts.com/t/a4e40941cd04772dbe49aa5790ad5905.eot?#iefix") format("embedded-opentype"),
-    /* url("//db.onlinewebfonts.com/t/a4e40941cd04772dbe49aa5790ad5905.woff2") format("woff2"), */
-      url("//db.onlinewebfonts.com/t/a4e40941cd04772dbe49aa5790ad5905.woff") format("woff"),
-    url("//db.onlinewebfonts.com/t/a4e40941cd04772dbe49aa5790ad5905.ttf") format("truetype"),
-    url("//db.onlinewebfonts.com/t/a4e40941cd04772dbe49aa5790ad5905.svg#OPTICalculator") format("svg");
+  src: url("./fonts/a4e40941cd04772dbe49aa5790ad5905.woff") format("woff2");
 }
 
 body {
