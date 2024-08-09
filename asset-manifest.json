@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/MemorySpan/static/css/main.eebb2141.css",
+    "main.css": "/MemorySpan/static/css/main.5d694e3b.css",
     "main.js": "/MemorySpan/static/js/main.2eba15a1.js",
     "static/js/787.d8da7108.chunk.js": "/MemorySpan/static/js/787.d8da7108.chunk.js",
+    "static/media/woff": "/MemorySpan/static/media/a4e40941cd04772dbe49aa5790ad5905.f4f23b594bd58af811a8.woff",
     "index.html": "/MemorySpan/index.html",
-    "main.eebb2141.css.map": "/MemorySpan/static/css/main.eebb2141.css.map",
+    "main.5d694e3b.css.map": "/MemorySpan/static/css/main.5d694e3b.css.map",
     "main.2eba15a1.js.map": "/MemorySpan/static/js/main.2eba15a1.js.map",
     "787.d8da7108.chunk.js.map": "/MemorySpan/static/js/787.d8da7108.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eebb2141.css",
+    "static/css/main.5d694e3b.css",
     "static/js/main.2eba15a1.js"
   ]
 }
