@@ -11,7 +11,7 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
   const [goScore, setGoScore] = useState<number>(0);
   const [noGoScore, setNoGoScore] = useState<number>(0);
   const [span, setSpan] = useState<number>(3);
-  const [checkForward, setCheckForward] = useState<boolean>(true);
+  const [checkForward] = useState<boolean>(true);
   const [isSlow, setIsSlow] = useState<boolean>(true);
   const [calc, setCalc] = useState<string>("");
   const [message, setMessage] = useState<string>("");
@@ -20,6 +20,12 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
   const [shouldCheckConditions, setShouldCheckConditions] = useState<boolean>(false);
   const [timerInterval, setTimerInterval] = useState<NodeJS.Timeout>();
+
+  const showLogs = () => {
+    if (activeRound) setActiveRound(false);
+    const msg = `Go: ${goScore}/${goRound} NoGO: ${noGoScore}/${goNoRound}`;
+    navigator.clipboard.writeText(msg);
+  };
 
   const addGoRound = useCallback(
     (correct: boolean) => {
@@ -155,10 +161,6 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
     setMessage("");
   };
 
-  const toggleCheckForward = () => {
-    setMessage("");
-    setCheckForward(!checkForward);
-  };
   const toggleIsSlow = () => {
     setMessage("");
     setIsSlow(!isSlow);
@@ -178,7 +180,7 @@ function GoNoGo({ openMenu }: { openMenu: () => void }) {
         decreaseSpan={decreaseSpan}
         checkForward={checkForward}
         isSlow={isSlow}
-        toggleCheckForward={toggleCheckForward}
+        showLogs={showLogs}
         toggleIsSlow={toggleIsSlow}
         activeRound={activeRound}
       />

@@ -7,7 +7,7 @@ function GoNoGoButtons({
   resetClick,
   increaseSpan,
   decreaseSpan,
-  toggleCheckForward,
+  showLogs,
   toggleIsSlow,
   checkForward,
   isSlow,
@@ -19,7 +19,7 @@ function GoNoGoButtons({
   resetClick: () => void;
   increaseSpan: () => void;
   decreaseSpan: () => void;
-  toggleCheckForward: () => void;
+  showLogs: () => void;
   toggleIsSlow: () => void;
   checkForward: boolean;
   isSlow: boolean;
@@ -37,8 +37,8 @@ function GoNoGoButtons({
         <button id="clear" className="smallButtonFont" onClick={resetClick}>
           AC
         </button>
-        <button id="multiply" className="smallButtonFont" onClick={toggleCheckForward}>
-          {checkForward ? "Forward" : "Reverse"}
+        <button id="multiply" className="smallButtonFont" onClick={showLogs}>
+          Logs
         </button>
       </div>
       <div className="buttonRow height100">
